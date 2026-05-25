@@ -7,7 +7,7 @@
     var correct = 'layered2026';
     var key = 'gatari_auth';
     if (sessionStorage.getItem(key) !== correct) {
-      var input = prompt('layered2026');
+      var input = prompt('パスワードを入力');
       if (input !== correct) {
         document.documentElement.innerHTML = '<div style="background:#0a0a0a;color:#c9a84c;height:100vh;display:flex;align-items:center;justify-content:center;font-family:sans-serif;font-size:1.2rem;">アクセスが拒否されました</div>';
         return;
