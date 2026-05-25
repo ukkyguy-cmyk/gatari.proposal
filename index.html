@@ -1,11 +1,1216 @@
 <!DOCTYPE html>
+
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>準備中</title>
+  <title>LAYERED PARK × GATARI Auris — 連携提案</title>
+  <style>
+    /* Bebas Neue fallback → Impact → Arial Narrow */
+    /* Zen Kaku Gothic New fallback → Yu Gothic → Hiragino → system */
+  </style>
+  <style>
+    :root {
+      --gold: #c9a84c;
+      --gold-dim: rgba(201,168,76,0.1);
+      --gold-line: rgba(201,168,76,0.25);
+      --bg: #0a0a0a;
+      --text: #f0ece3;
+      --muted: rgba(240,236,227,0.5);
+      --muted2: rgba(240,236,227,0.22);
+      --green: #4caf7a;
+      --green-dim: rgba(76,175,122,0.1);
+      --amber: #e8a83a;
+      --amber-dim: rgba(232,168,58,0.1);
+      --blue: #5a9fd4;
+      --blue-dim: rgba(90,159,212,0.1);
+    }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Yu Gothic', 'YuGothic', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  line-height: 1.8;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ===== NAV ===== */
+.side-nav {
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 100;
+}
+.nav-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  border: 1px solid var(--gold-line);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.nav-dot.active { background: var(--gold); border-color: var(--gold); }
+
+/* ===== SHARED ===== */
+.slide {
+  min-height: 100vh;
+  padding: 100px 8vw 80px;
+  border-bottom: 1px solid var(--gold-line);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.slide-num {
+  position: absolute;
+  top: 40px; right: 8vw;
+  font-family: 'Impact', 'Arial Narrow', 'Arial', sans-serif;
+  font-size: 11px; letter-spacing: 0.3em;
+  color: var(--muted2);
+}
+.bg-word {
+  position: absolute;
+  right: -2vw; bottom: -40px;
+  font-family: 'Impact', 'Arial Narrow', 'Arial', sans-serif;
+  font-size: clamp(100px, 18vw, 220px);
+  color: rgba(201,168,76,0.035);
+  line-height: 1; pointer-events: none;
+  user-select: none; letter-spacing: -0.02em;
+}
+.tag {
+  font-family: 'Impact', 'Arial Narrow', 'Arial', sans-serif;
+  font-size: 11px; letter-spacing: 0.35em;
+  color: var(--gold); display: block; margin-bottom: 20px;
+}
+h2 {
+  font-family: 'Impact', 'Arial Narrow', 'Arial', sans-serif;
+  font-size: clamp(36px, 6vw, 72px);
+  letter-spacing: 0.04em; line-height: 1.05;
+}
+.rule { width: 48px; height: 1px; background: var(--gold); margin: 28px 0; }
+.body-text {
+  font-size: 14px; font-weight: 300;
+  color: var(--muted); letter-spacing: 0.08em;
+  line-height: 2.1; max-width: 640px;
+}
+.quote {
+  border-left: 2px solid var(--gold);
+  padding-left: 24px; margin: 28px 0;
+}
+.quote p { font-size: 15px; color: var(--text); letter-spacing: 0.1em; line-height: 2.2; }
+
+/* ===== FADE ===== */
+.fade { opacity: 0; transform: translateY(40px); transition: opacity 0.85s ease, transform 0.85s ease; }
+.fade.show { opacity: 1; transform: none; }
+.d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.2s; }
+.d3 { transition-delay: 0.3s; } .d4 { transition-delay: 0.45s; }
+
+/* ===== HERO ===== */
+#s0 { justify-content: space-between; padding-top: 130px; }
+#s0 h1 {
+  font-family: 'Impact', 'Arial Narrow', 'Arial', sans-serif;
+  font-size: clamp(52px, 9vw, 116px);
+  line-height: 1.03; letter-spacing: 0.02em;
+  max-width: 820px;
+}
+#s0 h1 em { font-style: normal; color: var(--gold); }
+.hero-meta {
+  display: flex; gap: 56px; flex-wrap: wrap;
+  align-items: flex-end; margin-top: 48px;
+}
+.hero-meta-item { font-size: 11px; letter-spacing: 0.2em; color: var(--muted2); line-height: 2; }
+.hero-meta-item strong {
+  display: block; color: var(--gold);
+  font-family: 'Impact', 'Arial Narrow', 'Arial', sans-serif;
+  font-size: 13px; letter-spacing: 0.25em; margin-bottom: 4px;
+}
+.hero-scroll {
+  position: absolute; bottom: 40px; left: 8vw;
+  font-family: 'Impact', 'Arial Narrow', 'Arial', sans-serif;
+  font-size: 11px; letter-spacing: 0.25em; color: var(--gold);
+  display: flex; align-items: center; gap: 12px;
+  opacity: 0; animation: fadeUp 1s 1.4s forwards;
+}
+.hero-scroll::after {
+  content: ''; width: 48px; height: 1px; background: var(--gold-line);
+}
+
+/* ===== CONTEXT ===== */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px; margin-top: 40px;
+}
+@media(max-width:640px){ .two-col{ grid-template-columns:1fr; } }
+.col-box {
+  border: 1px solid var(--gold-line);
+  padding: 32px 28px;
+  background: var(--gold-dim);
+}
+.col-box .col-label {
+  font-family: 'Impact', 'Arial Narrow', 'Arial', sans-serif;
+  font-size: 10px; letter-spacing: 0.3em;
+  color: var(--gold); margin-bottom: 14px; display: block;
+}
+.col-box h3 {
+  font-family: 'Impact', 'Arial Narrow', 'Arial', sans-serif;
+  font-size: 22px; letter-spacing: 0.04em;
+  margin-bottom: 14px; line-height: 1.2;
+}
+.col-box p { font-size: 13px; font-weight: 300; color: var(--muted); letter-spacing: 0.07em; line-height: 1.9; }
+
+/* ===== USE CASES ===== */
+.cases-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px; margin-top: 40px;
+}
+@media(max-width:640px){ .cases-grid{ grid-template-columns:1fr; } }
+.case-card {
+  border: 1px solid var(--gold-line);
+  padding: 32px 28px;
+  position: relative; overflow: hidden;
+  transition: background 0.3s;
+}
+.case-card:hover { background: var(--gold-dim); }
+.case-card::before {
+  content: attr(data-n);
+  position: absolute; top: 8px; right: 14px;
+  font-family: 'Impact', 'Arial Narrow', 'Arial', sans-serif;
+  font-size: 64px; color: rgba(201,168,76,0.06);
+  line-height: 1; pointer-events: none;
+}
+.case-icon { font-size: 28px; margin-bottom: 14px; }
+.case-card h3 {
+  font-family: 'Impact', 'Arial Narrow', 'Arial', sans-serif;
+  font-size: 18px; letter-spacing: 0.06em;
+  margin-bottom: 10px; color: var(--gold);
+}
+.case-card p { font-size: 13px; font-weight: 300; color: var(--muted); letter-spacing: 0.07em; line-height: 1.9; }
+.case-card .case-auris {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--gold-line);
+  font-size: 11px; color: var(--muted2);
+  letter-spacing: 0.08em; line-height: 1.8;
+}
+.case-card .case-auris strong { color: var(--gold); font-weight: 400; }
+
+/* ===== PERSONA ===== */
+.stages {
+  display: flex; flex-direction: column;
+  gap: 2px; margin-top: 40px; max-width: 720px;
+}
+.stage {
+  display: grid; grid-template-columns: 56px 1fr;
+  border: 1px solid var(--gold-line);
+  overflow: hidden; transition: background 0.3s;
+}
+.stage:hover { background: var(--gold-dim); }
+.stage-num {
+  background: var(--gold-dim);
+  border-right: 1px solid var(--gold-line);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Impact', 'Arial Narrow', 'Arial', sans-serif;
+  font-size: 22px; color: var(--gold); letter-spacing: 0.05em;
+}
+.stage-body { padding: 18px 22px; }
+.stage-label {
+  font-family: 'Impact', 'Arial Narrow', 'Arial', sans-serif;
+  font-size: 11px; letter-spacing: 0.25em;
+  color: var(--gold); margin-bottom: 6px;
+}
+.stage-desc { font-size: 13px; font-weight: 300; color: var(--muted); letter-spacing: 0.07em; line-height: 1.8; }
+.stage-note {
+  margin-top: 28px; padding: 20px 24px;
+  background: rgba(201,168,76,0.06);
+  border-left: 2px solid var(--gold);
+  font-size: 13px; color: var(--muted);
+  letter-spacing: 0.07em; line-height: 1.9; max-width: 720px;
+}
+
+/* ===== STAKEHOLDERS ===== */
+.sh-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 2px; margin-top: 40px;
+}
+@media(max-width:640px){ .sh-grid{ grid-template-columns:1fr; } }
+.sh-card { border: 1px solid var(--gold-line); padding: 30px 24px; }
+.sh-tag {
+  font-family: 'Impact', 'Arial Narrow', 'Arial', sans-serif;
+  font-size: 10px; letter-spacing: 0.3em;
+  color: var(--gold); margin-bottom: 14px; display: block;
+}
+.sh-card h3 {
+  font-family: 'Impact', 'Arial Narrow', 'Arial', sans-serif;
+  font-size: 20px; margin-bottom: 14px; line-height: 1.2;
+}
+.sh-card ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.sh-card ul li {
+  font-size: 12px; font-weight: 300; color: var(--muted);
+  letter-spacing: 0.07em; line-height: 1.7;
+  padding-left: 14px; position: relative;
+}
+.sh-card ul li::before { content: '—'; position: absolute; left: 0; color: var(--gold); }
+
+/* ===== FUNDING TABLE ===== */
+.fund-table-wrap { overflow-x: auto; margin-top: 40px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+thead tr { border-bottom: 1px solid var(--gold); }
+th {
+  font-family: 'Impact', 'Arial Narrow', 'Arial', sans-serif;
+  font-size: 10px; letter-spacing: 0.25em; color: var(--gold);
+  padding: 12px 16px; text-align: left; font-weight: 400; white-space: nowrap;
+}
+td { padding: 18px 16px; border-bottom: 1px solid rgba(201,168,76,0.07); font-weight: 300; letter-spacing: 0.05em; vertical-align: top; line-height: 1.8; }
+tr:hover td { background: var(--gold-dim); }
+.badge {
+  display: inline-block;
+  font-family: 'Impact', 'Arial Narrow', 'Arial', sans-serif;
+  font-size: 9px; letter-spacing: 0.2em;
+  padding: 3px 8px; border-radius: 2px;
+}
+.b-hot { background: var(--green-dim); color: var(--green); border: 1px solid rgba(76,175,122,0.3); }
+.b-mid { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(232,168,58,0.3); }
+.b-sub { background: var(--blue-dim); color: var(--blue); border: 1px solid rgba(90,159,212,0.3); }
+.amt {
+  font-family: 'Impact', 'Arial Narrow', 'Arial', sans-serif;
+  font-size: 17px; color: var(--gold); display: block; line-height: 1.2;
+}
+.amt-sub { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; }
+.tlink {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-family: 'Impact', 'Arial Narrow', 'Arial', sans-serif;
+  font-size: 10px; letter-spacing: 0.15em; color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold-line); padding-bottom: 1px;
+  transition: border-color 0.2s;
+}
+.tlink:hover { border-color: var(--gold); }
+.tlink::after { content: '↗'; font-size: 9px; }
+
+/* ===== INVESTOR SECTION ===== */
+.inv-grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 2px; margin-top: 40px;
+}
+@media(max-width:640px){ .inv-grid{ grid-template-columns:1fr; } }
+.inv-card {
+  border: 1px solid var(--gold-line); padding: 28px 24px;
+  position: relative; transition: background 0.3s;
+}
+.inv-card:hover { background: var(--gold-dim); }
+.inv-rank {
+  position: absolute; top: 12px; right: 16px;
+  font-family: 'Impact', 'Arial Narrow', 'Arial', sans-serif;
+  font-size: 11px; letter-spacing: 0.2em;
+}
+.inv-card h3 {
+  font-family: 'Impact', 'Arial Narrow', 'Arial', sans-serif;
+  font-size: 18px; letter-spacing: 0.04em;
+  margin-bottom: 6px; line-height: 1.2; padding-right: 80px;
+}
+.inv-type {
+  font-size: 11px; color: var(--muted2);
+  letter-spacing: 0.1em; margin-bottom: 14px;
+}
+.inv-divider { height: 1px; background: var(--gold-line); margin: 14px 0; }
+.inv-card p { font-size: 12px; font-weight: 300; color: var(--muted); letter-spacing: 0.07em; line-height: 1.9; }
+.inv-why {
+  margin-top: 12px; padding-left: 12px;
+  border-left: 2px solid var(--gold);
+  font-size: 12px; color: var(--muted); letter-spacing: 0.07em; line-height: 1.9;
+}
+.inv-already {
+  margin-top: 40px; padding: 24px 28px;
+  border: 1px solid rgba(76,175,122,0.3);
+  background: var(--green-dim);
+}
+.inv-already h3 {
+  font-family: 'Impact', 'Arial Narrow', 'Arial', sans-serif;
+  font-size: 14px; letter-spacing: 0.2em;
+  color: var(--green); margin-bottom: 12px;
+}
+.inv-already p { font-size: 13px; font-weight: 300; color: var(--muted); letter-spacing: 0.07em; line-height: 2; }
+.inv-already .names { color: var(--text); font-weight: 400; }
+
+/* ===== ROADMAP ===== */
+.timeline { display: flex; flex-direction: column; gap: 2px; margin-top: 40px; max-width: 840px; }
+.tl-item { display: grid; grid-template-columns: 130px 1fr; border: 1px solid var(--gold-line); overflow: hidden; }
+@media(max-width:560px){ .tl-item{ grid-template-columns:1fr; } }
+.tl-time {
+  background: var(--gold-dim);
+  border-right: 1px solid var(--gold-line);
+  padding: 24px 18px;
+  display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+}
+.tl-phase {
+  font-family: 'Impact', 'Arial Narrow', 'Arial', sans-serif;
+  font-size: 11px; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 6px;
+}
+.tl-when { font-size: 11px; font-weight: 300; color: var(--muted); letter-spacing: 0.06em; line-height: 1.6; }
+.tl-body { padding: 22px 26px; }
+.tl-body h4 {
+  font-family: 'Impact', 'Arial Narrow', 'Arial', sans-serif;
+  font-size: 17px; letter-spacing: 0.06em; margin-bottom: 8px; line-height: 1.2;
+}
+.tl-body p { font-size: 12px; font-weight: 300; color: var(--muted); letter-spacing: 0.07em; line-height: 1.9; }
+.tl-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.tl-tag {
+  font-family: 'Impact', 'Arial Narrow', 'Arial', sans-serif;
+  font-size: 9px; letter-spacing: 0.2em;
+  padding: 2px 8px; border: 1px solid var(--gold-line); color: var(--muted2);
+}
+
+/* ===== NEXT / CTA ===== */
+#s8 { text-align: left; }
+#s8 h2 { font-size: clamp(44px, 8vw, 100px); }
+.next-grid {
+  display: grid; grid-template-columns: repeat(2,1fr);
+  gap: 2px; margin-top: 48px; max-width: 720px;
+}
+@media(max-width:560px){ .next-grid{ grid-template-columns:1fr; } }
+.next-card { border: 1px solid var(--gold-line); padding: 28px 24px; }
+.next-card .n-label {
+  font-family: 'Impact', 'Arial Narrow', 'Arial', sans-serif;
+  font-size: 10px; letter-spacing: 0.3em;
+  color: var(--gold); margin-bottom: 10px; display: block;
+}
+.next-card p { font-size: 13px; font-weight: 300; color: var(--muted); letter-spacing: 0.07em; line-height: 1.9; }
+.cta-btn {
+  display: inline-block; margin-top: 48px;
+  padding: 16px 40px;
+  border: 1px solid var(--gold); color: var(--gold);
+  text-decoration: none;
+  font-family: 'Impact', 'Arial Narrow', 'Arial', sans-serif;
+  font-size: 14px; letter-spacing: 0.25em;
+  transition: 0.3s; position: relative; overflow: hidden;
+}
+.cta-btn::before {
+  content: ''; position: absolute; inset: 0;
+  background: var(--gold); transform: scaleX(0);
+  transform-origin: left; transition: transform 0.3s ease; z-index: -1;
+}
+.cta-btn:hover { color: #0a0a0a; }
+.cta-btn:hover::before { transform: scaleX(1); }
+
+/* ===== FOOTER ===== */
+footer {
+  text-align: center; padding: 48px 8vw;
+  border-top: 1px solid var(--gold-line);
+  font-family: 'Impact', 'Arial Narrow', 'Arial', sans-serif;
+  font-size: 11px; letter-spacing: 0.25em;
+  color: var(--muted2); line-height: 2.2;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+  </style>
 </head>
-<body style="margin:0;display:flex;align-items:center;justify-content:center;height:100vh;background:#0a0a0a;">
-  <p style="color:#c9a84c;font-family:sans-serif;font-size:1.2rem;letter-spacing:0.1em;">このページは現在非公開です。</p>
+<body>
+
+<style>
+  #lock-overlay {
+    position: fixed;
+    inset: 0;
+    background: #0a0a0a;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: 'Yu Gothic', 'YuGothic', 'Hiragino Sans', sans-serif;
+  }
+
+  #lock-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+  }
+
+  .lock-inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    animation: lockFadeIn 1s ease forwards;
+  }
+
+  @keyframes lockFadeIn {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .lock-eyebrow {
+    font-family: 'Impact', 'Arial Narrow', Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    color: rgba(201, 168, 76, 0.5);
+    margin-bottom: 18px;
+  }
+
+  .lock-title {
+    font-family: 'Impact', 'Arial Narrow', Arial, sans-serif;
+    font-size: clamp(32px, 6vw, 64px);
+    letter-spacing: 0.06em;
+    color: #c9a84c;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .lock-sub {
+    font-size: 12px;
+    color: rgba(240, 236, 227, 0.3);
+    letter-spacing: 0.2em;
+    margin-bottom: 48px;
+  }
+
+  .lock-rule {
+    width: 40px;
+    height: 1px;
+    background: rgba(201, 168, 76, 0.4);
+    margin: 0 auto 36px;
+  }
+
+  .lock-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 280px;
+  }
+
+  .lock-label {
+    font-family: 'Impact', 'Arial Narrow', Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    color: rgba(201, 168, 76, 0.6);
+    align-self: flex-start;
+  }
+
+  .lock-input {
+    width: 100%;
+    padding: 14px 18px;
+    background: transparent;
+    border: 1px solid rgba(201, 168, 76, 0.25);
+    color: #f0ece3;
+    font-family: 'Impact', 'Arial Narrow', Arial, sans-serif;
+    font-size: 18px;
+    letter-spacing: 0.3em;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.3s;
+    -webkit-text-security: disc;
+    /* Firefoxフォールバック: type="password" で代替 */
+  }
+
+  .lock-input:focus {
+    border-color: rgba(201, 168, 76, 0.7);
+  }
+
+  .lock-input.shake {
+    animation: shake 0.4s ease;
+    border-color: rgba(200, 80, 80, 0.6) !important;
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%       { transform: translateX(-8px); }
+    40%       { transform: translateX(8px); }
+    60%       { transform: translateX(-6px); }
+    80%       { transform: translateX(6px); }
+  }
+
+  .lock-btn {
+    width: 100%;
+    padding: 14px;
+    background: transparent;
+    border: 1px solid #c9a84c;
+    color: #c9a84c;
+    font-family: 'Impact', 'Arial Narrow', Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.35em;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.3s;
+    margin-top: 4px;
+  }
+
+  .lock-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #c9a84c;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+    z-index: -1;
+  }
+
+  .lock-btn:hover { color: #0a0a0a; }
+  .lock-btn:hover::before { transform: scaleX(1); }
+
+  .lock-error {
+    font-size: 11px;
+    color: rgba(200, 80, 80, 0.8);
+    letter-spacing: 0.15em;
+    height: 16px;
+    text-align: center;
+  }
+
+  .lock-footer-note {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Impact', 'Arial Narrow', Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: rgba(240, 236, 227, 0.12);
+    white-space: nowrap;
+  }
+</style>
+
+<div id="lock-overlay">
+  <div class="lock-inner">
+    <div class="lock-eyebrow">PUBLIC MENTOR LAB</div>
+    <div class="lock-title">RESTRICTED</div>
+    <div class="lock-sub">CONFIDENTIAL DOCUMENT</div>
+    <div class="lock-rule"></div>
+
+    <div class="lock-form">
+      <div class="lock-label">ACCESS CODE</div>
+      
+      <input
+        id="lock-input"
+        class="lock-input"
+        type="password"
+        autocomplete="off"
+        autocorrect="off"
+        spellcheck="false"
+        placeholder="· · · · · ·"
+        maxlength="32"
+      />
+      <div class="lock-error" id="lock-error"></div>
+      <button class="lock-btn" id="lock-btn" onclick="checkPassword()">ENTER →</button>
+    </div>
+  </div>
+  <div class="lock-footer-note">LAYERED PARK × GATARI — 2026</div>
+</div>
+
+<script>
+  var CORRECT_PASSWORD = 'layeredpark2026';
+
+  if (sessionStorage.getItem('lp_auth') === '1') {
+    document.getElementById('lock-overlay').style.display = 'none';
+  }
+
+  document.getElementById('lock-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkPassword();
+  });
+
+  function checkPassword() {
+    var val = document.getElementById('lock-input').value;
+    if (val === CORRECT_PASSWORD) {
+      sessionStorage.setItem('lp_auth', '1');
+      var overlay = document.getElementById('lock-overlay');
+      overlay.style.transition = 'opacity 0.6s ease';
+      overlay.style.opacity = '0';
+      setTimeout(function() { overlay.style.display = 'none'; }, 650);
+    } else {
+      var input = document.getElementById('lock-input');
+      var err   = document.getElementById('lock-error');
+      input.classList.remove('shake');
+      void input.offsetWidth; // reflow
+      input.classList.add('shake');
+      input.value = '';
+      err.textContent = 'ACCESS DENIED — コードが違います';
+      setTimeout(function() {
+        input.classList.remove('shake');
+        err.textContent = '';
+      }, 1800);
+    }
+  }
+</script>
+
+
+<nav class="side-nav" id="sidenav"></nav>
+
+<!-- 00 COVER -->
+
+<section class="slide" id="s0">
+  <div class="slide-num">00 / 08</div>
+  <div class="bg-word">PARK</div>
+
+  <div class="fade">
+    <span class="tag">LAYERED PARK × GATARI AURIS — COLLABORATION PROPOSAL 2026</span>
+  </div>
+
+  <h1 class="fade d1">
+    見えない恐竜が、<br>
+    <em>インフラ</em>になる。
+  </h1>
+
+  <div class="hero-meta fade d2">
+    <div class="hero-meta-item">
+      <strong>PRESENTED BY</strong>
+      墨田区 公園課<br>公務員の愉快な働き方LAB
+    </div>
+    <div class="hero-meta-item">
+      <strong>TECHNOLOGY PARTNER</strong>
+      GATARI Inc. / Auris
+    </div>
+    <div class="hero-meta-item">
+      <strong>FIELD</strong>
+      墨田区内公園<br>（東あずま公園 他）
+    </div>
+    <div class="hero-meta-item">
+      <strong>DATE</strong>
+      2026
+    </div>
+  </div>
+
+  <div class="hero-scroll">SCROLL</div>
+</section>
+
+<!-- 01 WHY -->
+
+<section class="slide" id="s1">
+  <div class="slide-num">01 / 08</div>
+  <span class="tag fade">WHY NOW</span>
+  <h2 class="fade">「バリアフリー」は、<br>設備の話で<br>止まっている。</h2>
+  <div class="rule fade d1"></div>
+  <div class="quote fade d2">
+    <p>
+      スロープがあれば、十分か。<br>
+      点字ブロックがあれば、安心か。<br>
+      設備を変えても、<strong>体験は変わらない。</strong>
+    </p>
+  </div>
+  <p class="body-text fade d3">
+    本当のインクルーシブは「あなたのために作った場所」ではない。<br>
+    「誰もが同じ場所で、それぞれの世界を生きられる」こと。<br><br>
+    そのために必要なのは、設備ではなく<strong style="color:var(--gold)">レイヤー</strong>だ。<br>
+    Aurisは、そのレイヤーを現実空間に書き込める唯一のプラットフォームだと考えている。
+  </p>
+
+  <div class="two-col fade d3" style="margin-top:48px;">
+    <div class="col-box">
+      <span class="col-label">CURRENT STATE — 現状</span>
+      <h3>設備が先、体験が後。</h3>
+      <p>車椅子スロープ・点字ブロック・多目的トイレ。物理的バリアフリーは整備されつつある。しかし「この公園に来ても楽しめない」という感覚は変わっていない。設備は来られる条件を作るが、体験は作れない。</p>
+    </div>
+    <div class="col-box">
+      <span class="col-label">VISION — 目指す姿</span>
+      <h3>体験が先、設備が後。</h3>
+      <p>Aurisが空間にレイヤーを書き込む。視覚障害者には音声ナビ、発達障害者には静かなルート、子どもには恐竜の世界。物理設備を変えずに、その人に合った公園体験が生まれる。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 02 USE CASES -->
+
+<section class="slide" id="s2">
+  <div class="slide-num">02 / 08</div>
+  <span class="tag fade">USE CASES</span>
+  <h2 class="fade">ひとつの公園に、<br>複数の世界が<br>重なっている。</h2>
+  <div class="rule fade d1"></div>
+
+  <div class="cases-grid">
+    <div class="case-card fade d1" data-n="01">
+      <div class="case-icon">🦖</div>
+      <h3>恐竜体験学習</h3>
+      <p>子どもが公園を歩くと足音が近づき、遠吠えが聞こえ、解説が空間から流れる。公園全体が没入型の教室になる。教育コンテンツをノーコードで更新できるため、季節・学習テーマに合わせて入れ替え可能。</p>
+      <div class="case-auris"><strong>Auris活用：</strong>位置連動の音声演出 / 子どもの動きに反応するインタラクション / ノーコード更新</div>
+    </div>
+    <div class="case-card fade d2" data-n="02">
+      <div class="case-icon">🚶</div>
+      <h3>駅から公園への安全エスコート</h3>
+      <p>東あずま駅〜東あずま公園の導線を音声ナビで案内。信号・段差・曲がり角のタイミングで音が変わる。視覚障害者が「行ったことのない公園」に単独で行ける世界を作る。</p>
+      <div class="case-auris"><strong>Auris活用：</strong>3次元位置認識による動的ナビ / 多言語切り替え / 常時サポートモード</div>
+    </div>
+    <div class="case-card fade d1" data-n="03">
+      <div class="case-icon">♾️</div>
+      <h3>ほんとうのインクルーシブ公園</h3>
+      <p>盲・ろう・肢体不自由・発達障害。それぞれに違うレイヤーが重なる。同じベンチに座りながら、それぞれの人が最適な公園体験を受け取る。「設備を変えずに体験を変える」Aurisの特性がここで最大限に活きる。</p>
+      <div class="case-auris"><strong>Auris活用：</strong>ハンディ別レイヤー設計 / cmオーダー3D位置認識 / 座る・立つ動作への対応</div>
+    </div>
+    <div class="case-card fade d2" data-n="04">
+      <div class="case-icon">🌿</div>
+      <h3>ナチュラルな棲み分け</h3>
+      <p>静かにいたい人・にぎやかに遊びたい人・一人でいたい人が、看板なしに自然と自分のゾーンを見つける。音と体験が見えない地図を描く。行政が「静粛ゾーン」と看板を立てるのではなく、体験が人を誘導する。</p>
+      <div class="case-auris"><strong>Auris活用：</strong>位置連動の空間演出 / ユーザー属性別レイヤー / 動的ゾーニング</div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 PERSONA -->
+
+<section class="slide" id="s3">
+  <div class="slide-num">03 / 08</div>
+  <span class="tag fade">PERSONA × METHOD</span>
+  <h2 class="fade">仕掛ける側が、<br>先に盲目に<br>なる。</h2>
+  <div class="rule fade d1"></div>
+  <p class="body-text fade d2">
+    ペルソナは障害者ではなく、<strong style="color:var(--gold)">健常者</strong>だ。<br>
+    目隠しをした瞬間、全員が「盲目初心者」になる。<br>
+    共感は説明から生まれない。体験から生まれる。
+  </p>
+
+  <div class="stages fade d3">
+    <div class="stage">
+      <div class="stage-num">01</div>
+      <div class="stage-body">
+        <div class="stage-label">BOTH EYES OPEN — 両目で見る</div>
+        <div class="stage-desc">通常の視野。まだ「自分には関係ない」と思っている。</div>
+      </div>
+    </div>
+    <div class="stage">
+      <div class="stage-num">02</div>
+      <div class="stage-body">
+        <div class="stage-label">NARROW FIELD — 視野が狭まる</div>
+        <div class="stage-desc">周辺視野が消える。空間の圧迫感が出始める。足元が不安になる。</div>
+      </div>
+    </div>
+    <div class="stage">
+      <div class="stage-num">03</div>
+      <div class="stage-body">
+        <div class="stage-label">BLUR — ぼかし</div>
+        <div class="stage-desc">輪郭が溶ける。音と気配だけが頼りになる。Aurisの音声が「見える」ようになる瞬間。</div>
+      </div>
+    </div>
+    <div class="stage">
+      <div class="stage-num">04</div>
+      <div class="stage-body">
+        <div class="stage-label">ONE EYE — 片目隠し</div>
+        <div class="stage-desc">奥行きが消える。距離感が掴めなくなる。段差の恐怖を初めて理解する。</div>
+      </div>
+    </div>
+    <div class="stage">
+      <div class="stage-num">05</div>
+      <div class="stage-body">
+        <div class="stage-label">BLACKOUT — 両目隠し</div>
+        <div class="stage-desc">完全な暗闇。音だけで歩く。恐怖が、共感に変わる瞬間。設計者の意識が変わる。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stage-note fade d4">
+    段階的に世界が狭まるから、フォーカスがぶれない。<br>
+    「怖い」という感情が、「なんとかしたい」に変換される設計。<br>
+    これを利害関係者向けアジェンダの<strong style="color:var(--gold)">冒頭5分</strong>として組み込む。
+  </div>
+</section>
+
+<!-- 04 STAKEHOLDERS -->
+
+<section class="slide" id="s4">
+  <div class="slide-num">04 / 08</div>
+  <span class="tag fade">STAKEHOLDERS</span>
+  <h2 class="fade">3者が揃うから、<br>動く。</h2>
+  <div class="rule fade d1"></div>
+
+  <div class="sh-grid">
+    <div class="sh-card fade d1">
+      <span class="sh-tag">FIELD — 行政</span>
+      <h3>墨田区<br>公園課</h3>
+      <ul>
+        <li>実証フィールドの提供（東あずま公園 他）</li>
+        <li>障害者団体・住民との既存接点</li>
+        <li>行政の信頼担保・対外発信力</li>
+        <li>東京東信用金庫（ひがしん）との地域連携</li>
+        <li>全国公園行政への横展開の起点</li>
+      </ul>
+    </div>
+    <div class="sh-card fade d2">
+      <span class="sh-tag">TECHNOLOGY — 技術</span>
+      <h3>GATARI Inc.<br>（Auris）</h3>
+      <ul>
+        <li>スマホのみでノーコード実装</li>
+        <li>cmオーダー3D位置認識</li>
+        <li>東京武道館・東京メトロ等の導入実績</li>
+        <li>G7デジタル大臣会合「デジタル技術展」出展実績</li>
+        <li>「エンタメ→インフラ」実証の場が必要</li>
+      </ul>
+    </div>
+    <div class="sh-card fade d3">
+      <span class="sh-tag">COMMUNITY — 当事者</span>
+      <h3>障害者団体・<br>当事者</h3>
+      <ul>
+        <li>リアルなニーズの提供</li>
+        <li>共同設計のパートナー</li>
+        <li>「作られる側」から「作る側」へ</li>
+        <li>普及・啓発の担い手</li>
+        <li>申請書における「当事者性」の証明</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 FUNDING -->
+
+<section class="slide" id="s5">
+  <div class="slide-num">05 / 08</div>
+  <span class="tag fade">FUNDING MAP</span>
+  <h2 class="fade">資金を、<br>どこから取るか。</h2>
+  <div class="rule fade d1"></div>
+  <p class="body-text fade d2">
+    助成金・VC・銀行系を総合評価してランキング。<br>
+    GATARIの申請主体として動けるもの、墨田区が主体のもの、両者で狙えるものを分けて整理した。
+  </p>
+
+  <div class="fund-table-wrap fade d3">
+    <table>
+      <thead>
+        <tr>
+          <th>順位</th>
+          <th>資金源</th>
+          <th>上限額</th>
+          <th>助成率</th>
+          <th>申請主体</th>
+          <th>評価ポイント</th>
+          <th>リンク</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="badge b-hot">★★★ 1位</span></td>
+          <td>
+            <strong>PoC Ground Tokyo</strong><br>
+            <span style="font-size:11px;color:var(--muted)">東京都スタートアップ社会実装促進事業</span>
+          </td>
+          <td><span class="amt">費用支援</span><span class="amt-sub">伴走プログラム付<br>令和8年度公募開始済</span></td>
+          <td style="color:var(--muted);font-size:12px;">費用サポート<br>+ 場の提供</td>
+          <td style="font-size:12px;">GATARI<br><span style="color:var(--muted)">墨田区が共同実施者</span></td>
+          <td style="font-size:12px;color:var(--muted);">アーバンテック枠に完全適合。墨田区が名を連ねることで信頼度が跳ね上がる。すでに協業内定済みでも申請可。</td>
+          <td><a class="tlink" href="https://poc-ground.metro.tokyo.lg.jp/" target="_blank">公式</a></td>
+        </tr>
+        <tr>
+          <td><span class="badge b-hot">★★★ 2位</span></td>
+          <td>
+            <strong>TOKYO戦略的イノベーション促進事業</strong><br>
+            <span style="font-size:11px;color:var(--muted)">テーマ⑤ 障害者支援・バリアフリー</span>
+          </td>
+          <td><span class="amt">8,000万円</span><span class="amt-sub">下限1,500万円 / 最長3年</span></td>
+          <td style="color:var(--muted);font-size:12px;">2/3以内</td>
+          <td style="font-size:12px;">GATARI<br><span style="color:var(--muted)">他機関との連携が必須条件</span></td>
+          <td style="font-size:12px;color:var(--muted);">「障害者ウェルビーイング×最新技術×共生社会」がテーマ⑤に直結。墨田区（公設機関）との連携を申請書に明記することで評価が上がる。</td>
+          <td><a class="tlink" href="https://www.tokyo-kosha.or.jp/support/josei/jigyo/tokyo-innovation.html" target="_blank">公式</a></td>
+        </tr>
+        <tr>
+          <td><span class="badge b-hot">★★★ 3位</span></td>
+          <td>
+            <strong>国交省スマートシティ実装化支援</strong><br>
+            <span style="font-size:11px;color:var(--muted)">4省庁合同公募（国交省・内閣府・経産省・総務省）</span>
+          </td>
+          <td><span class="amt">規模による</span><span class="amt-sub">資金＋ノウハウ両面支援</span></td>
+          <td style="color:var(--muted);font-size:12px;">事業規模による</td>
+          <td style="font-size:12px;">墨田区<br><span style="color:var(--muted)">GATARIが技術提供者</span></td>
+          <td style="font-size:12px;color:var(--muted);">行政主体で申請できる最大の窓口。全国展開ロードマップを示せば採択確率が上がる。採択後は他自治体への横展開のお墨付きになる。</td>
+          <td><a class="tlink" href="https://www.mlit.go.jp/toshi/tosiko/toshi_tosiko_tk_000040.html" target="_blank">公式</a></td>
+        </tr>
+        <tr>
+          <td><span class="badge b-mid">★★ 4位</span></td>
+          <td>
+            <strong>デジタル田園都市国家構想交付金</strong><br>
+            <span style="font-size:11px;color:var(--muted)">内閣府・地域サービス実装型</span>
+          </td>
+          <td><span class="amt">実装費全額</span><span class="amt-sub">単年度・立上げ費のみ</span></td>
+          <td style="color:var(--muted);font-size:12px;">事業規模による</td>
+          <td style="font-size:12px;">墨田区<br><span style="color:var(--muted)">実証→実装フェーズで使う</span></td>
+          <td style="font-size:12px;color:var(--muted);">実装を伴わない実証のみは対象外。PoC後の「本番導入」タイミングで使う。ランニングコストは自治体負担が前提のため、事前の料金設計が必要。</td>
+          <td><a class="tlink" href="https://www.chisou.go.jp/sousei/about/mirai/index.html" target="_blank">公式</a></td>
+        </tr>
+        <tr>
+          <td><span class="badge b-mid">★★ 5位</span></td>
+          <td>
+            <strong>シニア・福祉・アクセシビリティ<br>販路開拓助成事業</strong>
+          </td>
+          <td><span class="amt">公社規定による</span><span class="amt-sub">販路拡大費用サポート</span></td>
+          <td style="color:var(--muted);font-size:12px;">2/3以内</td>
+          <td style="font-size:12px;">GATARI単独</td>
+          <td style="font-size:12px;color:var(--muted);">福祉・アクセシビリティ枠として単独申請しやすい。実証実績を積むための「最初の1本」として使いやすい。</td>
+          <td><a class="tlink" href="https://www.tokyo-kosha.or.jp/support/josei/index.html" target="_blank">公式</a></td>
+        </tr>
+        <tr>
+          <td><span class="badge b-sub">★ 6位</span></td>
+          <td>
+            <strong>観光DX推進モデル実証事業</strong><br>
+            <span style="font-size:11px;color:var(--muted)">観光庁・令和7年度補正予算</span>
+          </td>
+          <td><span class="amt">2億円</span><span class="amt-sub">補助率1/2</span></td>
+          <td style="color:var(--muted);font-size:12px;">1/2</td>
+          <td style="font-size:12px;">共同申請<br><span style="color:var(--muted)">観光事業者との連携が必要</span></td>
+          <td style="font-size:12px;color:var(--muted);">多言語音声ガイド・体験コンテンツ枠として使える。恐竜体験学習や外国人向けガイドとして切り口を設定すれば適合しやすい。</td>
+          <td><a class="tlink" href="https://www.mlit.go.jp/kankocho/kobo_2026_00003.html" target="_blank">公式</a></td>
+        </tr>
+        <tr>
+          <td><span class="badge b-sub">★ 7位</span></td>
+          <td>
+            <strong>東京東信用金庫（ひがしん）</strong><br>
+            <span style="font-size:11px;color:var(--muted)">ビジネスマッチング・地域連携</span>
+          </td>
+          <td><span class="amt">融資規模による</span><span class="amt-sub">資金より「つなぎ」が本質</span></td>
+          <td style="color:var(--muted);font-size:12px;">—</td>
+          <td style="font-size:12px;">墨田区経由<br><span style="color:var(--muted)">すみだSDGsアワード受賞実績</span></td>
+          <td style="font-size:12px;color:var(--muted);">直接融資よりも「墨田区内スポンサー企業の紹介」「産学官金連携のハブ」として使う。ひがしんビジネスフェア（両国国技館）への出展も視野に。</td>
+          <td><a class="tlink" href="https://www.higashin.co.jp/" target="_blank">公式</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 06 INVESTORS -->
+
+<section class="slide" id="s6">
+  <div class="slide-num">06 / 08</div>
+  <span class="tag fade">INVESTOR LANDSCAPE</span>
+  <h2 class="fade">GATARIの投資家が、<br>この構想の<br>扉になる。</h2>
+  <div class="rule fade d1"></div>
+
+  <div class="inv-already fade d2">
+    <h3>★ GATARIの既存投資家ネットワーク — まず最初に話す相手</h3>
+    <p>
+      GATARIのプレシリーズA投資家は
+      <span class="names">W ventures、OLM ventures、東大創業者の会応援ファンド、毎日みらい創造ラボ、名古屋テレビベンチャーズ</span>、
+      個人では<span class="names">国光宏尚氏（gumi / FiNANCiE）、小泉直也氏、濱本暁氏、馬場健氏</span>。<br>
+      レイヤード・パーク構想をGATARIのCEO竹下俊一氏に持ち込むことで、このネットワーク全体に届く。
+      別途エンジェルを探す前に、既存の投資家が最も動きやすい。
+    </p>
+  </div>
+
+  <div class="inv-grid" style="margin-top:28px;">
+    <div class="inv-card fade d1">
+      <span class="inv-rank"><span class="badge b-hot">注目</span></span>
+      <h3>国光宏尚氏</h3>
+      <div class="inv-type">gumi取締役会長 / FiNANCiEファウンダー / GATARI既存投資家</div>
+      <div class="inv-divider"></div>
+      <p>出資時のコメントで「音のARは斬新かつ現実的なアプローチ」と評価。MR×公共空間×インクルーシブという今回の切り口は、彼が投資した文脈の自然な延長線上にある。</p>
+      <div class="inv-why">既存投資家として追加出資・紹介機能の両面を期待できる。構想が動き始めた段階で報告・巻き込みが有効。</div>
+    </div>
+    <div class="inv-card fade d2">
+      <span class="inv-rank"><span class="badge b-hot">注目</span></span>
+      <h3>W ventures</h3>
+      <div class="inv-type">独立系シードVC / GATARI既存投資家</div>
+      <div class="inv-divider"></div>
+      <p>シード特化で社会課題解決型に積極的。東大発スタートアップへの投資実績があり、GATARIへの既存出資者として構想への理解も得やすい。</p>
+      <div class="inv-why">次のラウンドでGATARIが資金調達する際の主要候補。レイヤード・パーク構想はその時の「実証実績」として機能する。</div>
+    </div>
+    <div class="inv-card fade d1">
+      <span class="inv-rank"><span class="badge b-mid">候補</span></span>
+      <h3>きらぼし銀行</h3>
+      <div class="inv-type">東京都地銀 / PoC Ground Tokyoサポーター</div>
+      <div class="inv-divider"></div>
+      <p>PoC Ground Tokyoの公式サポーター企業として名を連ねており、GATARIがPoC Ground Tokyoに採択された場合、自然に接点が生まれる。</p>
+      <div class="inv-why">直接融資よりも「採択後のビジネスマッチング」機能として活用。インパクトローン・SDGs融資の文脈で話を持ち込む余地あり。</div>
+    </div>
+    <div class="inv-card fade d2">
+      <span class="inv-rank"><span class="badge b-mid">候補</span></span>
+      <h3>ReGACY Innovation Group</h3>
+      <div class="inv-type">大企業オープンイノベーション支援</div>
+      <div class="inv-divider"></div>
+      <p>GATARIはアクセラレータープログラム「GO BEYOND DIMENSIONS TOKYO」に採択された実績がある。既存の関係性があるため、今回の構想を持ち込むハードルが低い。</p>
+      <div class="inv-why">大企業のCVC・スポンサー資金への橋渡し機能として活用できる可能性。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 ROADMAP -->
+
+<section class="slide" id="s7">
+  <div class="slide-num">07 / 08</div>
+  <span class="tag fade">ROADMAP</span>
+  <h2 class="fade">申請の順番が、<br>勝負を決める。</h2>
+  <div class="rule fade d1"></div>
+  <p class="body-text fade d2">
+    小さく実証して、実績で大きな資金を引き寄せる。<br>
+    投資家は「構想」より「動いている実証」に出資する。
+  </p>
+
+  <div class="timeline fade d3">
+    <div class="tl-item">
+      <div class="tl-time">
+        <div class="tl-phase">PHASE 0</div>
+        <div class="tl-when">今すぐ</div>
+      </div>
+      <div class="tl-body">
+        <h4>この提案書をGATARIに渡す → 共同で動き始める</h4>
+        <p>利害関係者アジェンダ（内部・GATARI・当事者の3者）を設定。目隠しワーク体験から始まる55分の共同セッションを設計・実施する。</p>
+        <div class="tl-tags">
+          <span class="tl-tag">墨田区主導</span>
+          <span class="tl-tag">費用ゼロ</span>
+          <span class="tl-tag">合意形成</span>
+        </div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">
+        <div class="tl-phase">PHASE 1</div>
+        <div class="tl-when">2026年<br>夏まで</div>
+      </div>
+      <div class="tl-body">
+        <h4>GATARIが PoC Ground Tokyo に申請（令和8年度公募開始済）</h4>
+        <p>墨田区を「場の提供者」として共同実施者に記載。費用負担なしで最初の実証実験が動き出す。これが全ての起点になる。</p>
+        <div class="tl-tags">
+          <span class="tl-tag">GATARI申請</span>
+          <span class="tl-tag">墨田区共同実施</span>
+          <span class="tl-tag">費用サポートあり</span>
+        </div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">
+        <div class="tl-phase">PHASE 2</div>
+        <div class="tl-when">2026年<br>秋エントリー</div>
+      </div>
+      <div class="tl-body">
+        <h4>TOKYO戦略的イノベーション促進事業に申請（上限8,000万円）</h4>
+        <p>PoCでの実証データを添えて申請。「障害者支援×MR技術×公共空間」でテーマ⑤に完全適合。墨田区（公設機関）との連携を明記して審査評価を上げる。最長3年・上限8,000万円で本格開発へ。</p>
+        <div class="tl-tags">
+          <span class="tl-tag">GATARI申請</span>
+          <span class="tl-tag">上限8,000万円</span>
+          <span class="tl-tag">助成率2/3</span>
+          <span class="tl-tag">最長3年</span>
+        </div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">
+        <div class="tl-phase">PHASE 3</div>
+        <div class="tl-when">2027年<br>以降</div>
+      </div>
+      <div class="tl-body">
+        <h4>墨田区がスマートシティ実装化支援 または デジタル田園都市交付金に申請</h4>
+        <p>実証と開発が完了した段階で、行政主体の資金調達へ移行。全国の公園行政への横展開モデルとして提案することで採択確率が上がる。「GATARIとの実証実績」が最大の武器になる。</p>
+        <div class="tl-tags">
+          <span class="tl-tag">墨田区申請</span>
+          <span class="tl-tag">国交省・内閣府系</span>
+          <span class="tl-tag">全国展開モデル</span>
+        </div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">
+        <div class="tl-phase">PHASE 4</div>
+        <div class="tl-when">並行して<br>随時</div>
+      </div>
+      <div class="tl-body">
+        <h4>東京東信用金庫（ひがしん）経由でスポンサー企業を紹介してもらう</h4>
+        <p>墨田区とひがしんはすでに「すみだSDGsアワード」などで連携実績あり。ひがしんを通じて区内企業・スポンサー候補に構想を紹介。ひがしんビジネスフェア（両国国技館）への出展も視野に入れる。</p>
+        <div class="tl-tags">
+          <span class="tl-tag">墨田区経由</span>
+          <span class="tl-tag">ひがしん活用</span>
+          <span class="tl-tag">スポンサー開拓</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 NEXT -->
+
+<section class="slide" id="s8">
+  <div class="slide-num">08 / 08</div>
+  <div class="bg-word">ACT</div>
+  <span class="tag fade">NEXT ACTION</span>
+  <h2 class="fade">まず、<br>この場で<br>決めること。</h2>
+  <div class="rule fade d1"></div>
+  <p class="body-text fade d2">
+    完璧な計画を待たない。<br>
+    公園は、すでにそこにある。<br>
+    Aurisは、すでに動いている。
+  </p>
+
+  <div class="next-grid fade d3">
+    <div class="next-card">
+      <span class="n-label">TODAY — 今日</span>
+      <p>この資料を共有。PoC Ground Tokyo申請に向けた役割分担（GATARI側・墨田区側）を仮決め。次回打ち合わせ日程を設定。</p>
+    </div>
+    <div class="next-card">
+      <span class="n-label">1 MONTH — 1ヶ月以内</span>
+      <p>現地スキャン実施。当事者団体との共同ヒアリング。利害関係者3者アジェンダ（目隠しワーク付き）の開催。</p>
+    </div>
+    <div class="next-card">
+      <span class="n-label">3 MONTHS — 3ヶ月以内</span>
+      <p>PoC Ground Tokyo申請書提出。TOKYO戦略的イノベーション促進事業のエントリー準備開始。1ルートで実証実験スタート。</p>
+    </div>
+    <div class="next-card">
+      <span class="n-label">BEYOND — その先</span>
+      <p>実証データと当事者の声をもとに設計を更新。全国の公園行政への横展開。「インフラとしてのAuris」の最初の証明になる。</p>
+    </div>
+  </div>
+
+<a class="cta-btn fade d4" href="mailto:">打ち合わせを設定する</a>
+
+</section>
+
+<footer>
+  LAYERED PARK × GATARI Inc. — COLLABORATION PROPOSAL 2026<br>
+  墨田区 公園課 / 公務員の愉快な働き方LAB<br>
+  ※ 助成金情報は2026年5月時点。各制度の詳細は公式サイトでご確認ください。
+</footer>
+
+<script>
+  // ナビ生成
+  const slides = document.querySelectorAll('.slide');
+  const nav = document.getElementById('sidenav');
+  slides.forEach((s, i) => {
+    const d = document.createElement('div');
+    d.className = 'nav-dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => s.scrollIntoView({ behavior: 'smooth' });
+    nav.appendChild(d);
+  });
+
+  // フェード + ナビ
+  const dots = document.querySelectorAll('.nav-dot');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.fade').forEach(el => el.classList.add('show'));
+        const idx = Array.from(slides).indexOf(e.target);
+        dots.forEach(d => d.classList.remove('active'));
+        if (dots[idx]) dots[idx].classList.add('active');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  slides.forEach(s => io.observe(s));
+
+  // Hero animation
+  document.querySelectorAll('#s0 .fade').forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.animation = `fadeUp 1s ${0.3 + i * 0.2}s forwards`;
+    el.style.transform = 'translateY(30px)';
+  });
+</script>
+
 </body>
 </html>
